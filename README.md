@@ -63,9 +63,8 @@ Projeto desenvolvido com base na aula de Desenvolvimento de Software Web (Java +
 ```bash
 docker-compose up --build
 ```
-- Frontend: http://localhost:3000
-- Backend: http://localhost:8080
-- Swagger: http://localhost:8080/swagger-ui.html
+- Frontend: [http://localhost:3000](https://saude-frontend-x6mm.onrender.com)
+- Backend: [http://localhost:8080](https://saude-backend-x6mm.onrender.com)
 
 ### Desenvolvimento local
 ```bash
