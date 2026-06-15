@@ -1,101 +1,131 @@
 # 🏥 Saúde Web — Sistema de Gestão de Profissionais de Saúde
 
-Projeto desenvolvido com base na aula de Desenvolvimento de Software Web (Java + React).
+Projeto desenvolvido para a disciplina de Desenvolvimento de Software Web.
 
-**Alunos:**
-* Henrique Paes de Carvalho
-* Arthur Signorini Miranda
+## 🔗 Links
 
-## Stack
+| | URL |
+|---|---|
+| 🌐 **App em produção** | https://saude-frontend-x6mm.onrender.com |
+| ⚙️ **API (backend)** | https://saude-backend-x6mm.onrender.com |
+| 📄 **Swagger (documentação da API)** | https://saude-backend-x6mm.onrender.com/swagger-ui.html |
+| 💻 **Repositório GitHub** | https://github.com/Henripaecs/EngenhariaII |
 
-| Camada        | Tecnologia                    |
-|---------------|-------------------------------|
-| Backend       | Java 17 + Spring Boot 3.2     |
-| Frontend      | React 18 + React Router       |
-| Banco de Dados| PostgreSQL 15                 |
-| Build Backend | Maven                         |
-| Build Frontend| Node.js 20 + npm              |
-| Containers    | Docker + Docker Compose       |
-| CI/CD         | GitHub Actions                |
+> ⚠️ O backend está hospedado no plano gratuito do Render — a primeira requisição após inatividade pode demorar ~1 minuto para responder (cold start).
 
-## Entidades
+---
+
+## 👥 Equipe
+
+| Integrante | Responsabilidade |
+|---|---|
+| Arthur Signorini Miranda | CRUD de Profissional de Saúde |
+| Henrique Paes de Carvalho | CRUD de Atendimento |
+
+---
+
+## 🛠 Stack
+
+| Camada | Tecnologia |
+|---|---|
+| Backend | Java 17 + Spring Boot 3.2 |
+| Frontend | React 18 + React Router |
+| Banco de Dados | PostgreSQL 18 |
+| Build Backend | Maven |
+| Build Frontend | Node.js 20 + npm |
+| Containers | Docker + Docker Compose |
+| CI/CD | GitHub Actions |
+| Hospedagem | Render (gratuito) |
+
+---
+
+## 📋 Requisito Obrigatório — Entidades
 
 ### ProfissionalDeSaude
-- `id` (Long, PK)
-- `nome` (String, obrigatório)
-- `telefone` (String)
-- `endereco` (String)
-- `categoria` (List<String>: `MEDICO`, `PSICOLOGO`, `FISIOTERAPEUTA`)
+| Atributo | Tipo | Descrição |
+|---|---|---|
+| `id` | Long (PK) | Identificador único |
+| `nome` | String | Nome do profissional (obrigatório) |
+| `telefone` | String | Telefone de contato |
+| `endereco` | String | Endereço completo |
+| `categoria` | List\<String\> | MEDICO, PSICOLOGO, FISIOTERAPEUTA |
 
 ### Atendimento
-- `id` (Long, PK)
-- `data` (LocalDate, obrigatório)
-- `horario` (LocalTime)
-- `problema_texto` (Text)
-- `receita_saude` (List<String>) — Remédio (médico), Atividade Física (fisio), Atividade Mental (psicólogo)
-- `profissional` (FK → ProfissionalDeSaude)
+| Atributo | Tipo | Descrição |
+|---|---|---|
+| `id` | Long (PK) | Identificador único |
+| `data` | LocalDate | Data do atendimento (obrigatório) |
+| `horario` | LocalTime | Horário do atendimento |
+| `problema_texto` | Text | Descrição do problema/queixa |
+| `receita_saude` | List\<String\> | Remédio (médico) / Atividade Física (fisio) / Atividade Mental (psicólogo) |
+| `profissional` | FK | Profissional responsável |
 
-## Endpoints da API
+---
+
+## 🔌 Endpoints da API
 
 ### Profissionais `/api/profissionais`
-| Método | Rota                          | Descrição                    |
-|--------|-------------------------------|------------------------------|
-| POST   | `/api/profissionais`          | Inserir novo profissional     |
-| PUT    | `/api/profissionais/{id}`     | Alterar profissional por ID   |
-| GET    | `/api/profissionais`          | Consultar todos / por nome   |
-| GET    | `/api/profissionais/{id}`     | Consultar por ID              |
-| GET    | `/api/profissionais/categoria/{cat}` | Consultar por categoria |
-| DELETE | `/api/profissionais/{id}`     | Excluir por ID                |
+| Método | Rota | Descrição |
+|---|---|---|
+| POST | `/api/profissionais` | Inserir novo profissional |
+| PUT | `/api/profissionais/{id}` | Alterar profissional por ID |
+| GET | `/api/profissionais` | Consultar todos / filtrar por nome |
+| GET | `/api/profissionais/{id}` | Consultar por ID |
+| GET | `/api/profissionais/categoria/{cat}` | Consultar por categoria |
+| DELETE | `/api/profissionais/{id}` | Excluir por ID |
 
 ### Atendimentos `/api/atendimentos`
-| Método | Rota                          | Descrição                    |
-|--------|-------------------------------|------------------------------|
-| POST   | `/api/atendimentos`           | Registrar atendimento         |
-| GET    | `/api/atendimentos`           | Listar todos                  |
-| GET    | `/api/atendimentos/{id}`      | Buscar por ID                 |
-| GET    | `/api/atendimentos/profissional/{id}` | Listar por profissional |
-| PUT    | `/api/atendimentos/{id}`      | Alterar atendimento           |
-| DELETE | `/api/atendimentos/{id}`      | Excluir atendimento           |
+| Método | Rota | Descrição |
+|---|---|---|
+| POST | `/api/atendimentos` | Registrar atendimento |
+| GET | `/api/atendimentos` | Listar todos |
+| GET | `/api/atendimentos/{id}` | Buscar por ID |
+| GET | `/api/atendimentos/profissional/{id}` | Listar por profissional |
+| PUT | `/api/atendimentos/{id}` | Alterar atendimento |
+| DELETE | `/api/atendimentos/{id}` | Excluir atendimento |
 
-## Como rodar
+---
 
-### Com Docker Compose (recomendado)
+## 🚀 Como rodar localmente
+
+### Pré-requisitos
+- Java 17+
+- Maven
+- Node.js 20+
+- PostgreSQL rodando na porta 5432
+
+### Backend
 ```bash
-docker-compose up --build
-```
-- Frontend: [http://localhost:3000](https://saude-frontend-x6mm.onrender.com)
-- Backend: [http://localhost:8080](https://saude-backend-x6mm.onrender.com)
-
-### Desenvolvimento local
-```bash
-# Backend (requer PostgreSQL local na porta 5432)
 cd backend
 mvn spring-boot:run
+```
+Acesse: http://localhost:8080
 
-# Frontend
+### Frontend
+```bash
 cd frontend
 npm install
 npm start
 ```
+Acesse: http://localhost:3000
 
-## Testes
+### Com Docker Compose
 ```bash
-# Backend
-cd backend && mvn test
-
-# Frontend
-cd frontend && npm test
+docker compose up --build
 ```
 
-## Estrutura do Projeto
+---
+
+## 📁 Estrutura do Projeto
 ```
-saude-web/
-├── .github/workflows/ci-cd.yml
+EngenhariaII/
+├── .github/workflows/ci-cd.yml   ← CI/CD GitHub Actions
 ├── backend/
-│   ├── pom.xml
 │   ├── Dockerfile
+│   ├── pom.xml
 │   └── src/main/java/com/saude/
 │       ├── SaudeApplication.java
+│       ├── config/CorsConfig.java
 │       ├── model/
 │       │   ├── ProfissionalDeSaude.java
 │       │   └── Atendimento.java
@@ -106,16 +136,16 @@ saude-web/
 │           ├── ProfissionalDeSaudeController.java
 │           └── AtendimentoController.java
 ├── frontend/
-│   ├── package.json
 │   ├── Dockerfile
+│   ├── package.json
 │   └── src/
 │       ├── App.js / App.css
-│       ├── index.js
 │       ├── services/api.js
 │       └── components/
 │           ├── ProfissionalList.js
 │           ├── ProfissionalForm.js
 │           ├── AtendimentoList.js
 │           └── AtendimentoForm.js
-└── docker-compose.yml
+├── docker-compose.yml
+└── render.yaml                   ← Deploy automático no Render
 ```
