@@ -2,6 +2,10 @@
 
 Projeto desenvolvido com base na aula de Desenvolvimento de Software Web (Java + React).
 
+**Alunos:**
+* Henrique Paes de Carvalho
+* Arthur Signorini Miranda
+
 ## Stack
 
 | Camada        | Tecnologia                    |
