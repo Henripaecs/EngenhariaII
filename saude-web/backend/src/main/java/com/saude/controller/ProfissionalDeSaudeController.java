@@ -12,7 +12,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/profissionais")
-@CrossOrigin(origins = "*")
 public class ProfissionalDeSaudeController {
 
     private final ProfissionalDeSaudeRepository repository;

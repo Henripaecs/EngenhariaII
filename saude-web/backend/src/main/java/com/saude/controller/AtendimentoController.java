@@ -12,7 +12,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/atendimentos")
-@CrossOrigin(origins = "*")
 public class AtendimentoController {
 
     private final AtendimentoRepository repository;
